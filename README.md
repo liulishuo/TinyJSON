@@ -69,7 +69,7 @@ MemoryLayout<TinyJSON>.stride
 0x7ffeefbff408: 0x0000000000000009 0x0000000000000001
                 object || array || string || number || bool
 0x7ffeefbff418: 0x0000000000000003
-															type
+			      type
 ```
 
 - 所有元素都有明确的类型，不存在 Any 类型，节省内存。
