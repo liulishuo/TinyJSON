@@ -13,7 +13,6 @@
 		14C7761F27A1897700391FB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C7761D27A1897700391FB0 /* Main.storyboard */; };
 		14C7762127A1897B00391FB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14C7762027A1897B00391FB0 /* Assets.xcassets */; };
 		14C7762427A1897B00391FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C7762227A1897B00391FB0 /* LaunchScreen.storyboard */; };
-		14C7762D27A18A3C00391FB0 /* TinyJSON+More.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7762B27A18A3C00391FB0 /* TinyJSON+More.swift */; };
 		14C7762E27A18A3C00391FB0 /* TinyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C7762C27A18A3C00391FB0 /* TinyJSON.swift */; };
 		14C7763127A1916500391FB0 /* weibo.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C7763027A1916500391FB0 /* weibo.json */; };
 /* End PBXBuildFile section */
@@ -27,7 +26,6 @@
 		14C7762027A1897B00391FB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14C7762327A1897B00391FB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14C7762527A1897B00391FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14C7762B27A18A3C00391FB0 /* TinyJSON+More.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TinyJSON+More.swift"; sourceTree = "<group>"; };
 		14C7762C27A18A3C00391FB0 /* TinyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinyJSON.swift; sourceTree = "<group>"; };
 		14C7763027A1916500391FB0 /* weibo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weibo.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				14C7762C27A18A3C00391FB0 /* TinyJSON.swift */,
-				14C7762B27A18A3C00391FB0 /* TinyJSON+More.swift */,
 			);
 			path = TinyJSON;
 			sourceTree = "<group>";
@@ -158,7 +155,6 @@
 			files = (
 				14C7761C27A1897700391FB0 /* ViewController.swift in Sources */,
 				14C7761827A1897700391FB0 /* AppDelegate.swift in Sources */,
-				14C7762D27A18A3C00391FB0 /* TinyJSON+More.swift in Sources */,
 				14C7761A27A1897700391FB0 /* SceneDelegate.swift in Sources */,
 				14C7762E27A18A3C00391FB0 /* TinyJSON.swift in Sources */,
 			);
