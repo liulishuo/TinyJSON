@@ -1,5 +1,13 @@
+//
+//  JSON.swift
+//  JSONDemo2
+//
+//  Created by liulishuo on 2021/5/19.
+//
 
 import Foundation
+
+public typealias JSON = TinyJSON
 
 public enum Number {
     case double(Double)
@@ -52,7 +60,7 @@ public enum TinyJSON {
 
 }
 
-/// Wrap JSON node
+// 使用元数据包装json数据
 func wrap(_ object: Any) -> TinyJSON {
 
     switch object {
@@ -82,7 +90,7 @@ func wrap(_ object: Any) -> TinyJSON {
     }
 }
 
-/// Unwrap JSON node
+// 将json数据从元数据中解包
 func unwrap(_ json: TinyJSON) -> Any? {
     switch json {
     case let .string(string):
@@ -105,8 +113,7 @@ func unwrap(_ json: TinyJSON) -> Any? {
 extension TinyJSON: Comparable {
     public static func < (lhs: TinyJSON, rhs: TinyJSON) -> Bool {
         switch (lhs, rhs) {
-        case let (.string(l), .string(r)):
-            return l < r
+        case let (.string(l), .string(r)): return l < r
         case let (.number(.double(l)), .number(.double(r))):
             return l < r
         case let (.number(.int(l)), .number(.int(r))):
@@ -118,8 +125,7 @@ extension TinyJSON: Comparable {
 
     public static func > (lhs: TinyJSON, rhs: TinyJSON) -> Bool {
         switch (lhs, rhs) {
-        case let (.string(l), .string(r)):
-            return l > r
+        case let (.string(l), .string(r)): return l > r
         case let (.number(.double(l)), .number(.double(r))):
             return l > r
         case let (.number(.int(l)), .number(.int(r))):
@@ -131,20 +137,15 @@ extension TinyJSON: Comparable {
 
     public static func >= (lhs: TinyJSON, rhs: TinyJSON) -> Bool {
         switch (lhs, rhs) {
-        case let (.string(l), .string(r)):
-            return l >= r
+        case let (.string(l), .string(r)): return l >= r
         case let (.number(.double(l)), .number(.double(r))):
             return l >= r
         case let (.number(.int(l)), .number(.int(r))):
             return l >= r
-        case let (.array(l), .array(r)):
-            return l == r
-        case let (.object(l), .object(r)):
-            return l == r
-        case (.null, .null):
-            return true
-        case let (.bool(l), .bool(r)):
-            return l == r
+        case let (.array(l), .array(r)): return l == r
+        case let (.object(l), .object(r)): return l == r
+        case (.null, .null): return true
+        case let (.bool(l), .bool(r)): return l == r
         default:
             return false
         }
@@ -152,20 +153,15 @@ extension TinyJSON: Comparable {
 
     public static func <= (lhs: TinyJSON, rhs: TinyJSON) -> Bool {
         switch (lhs, rhs) {
-        case let (.string(l), .string(r)):
-            return l <= r
+        case let (.string(l), .string(r)): return l <= r
         case let (.number(.double(l)), .number(.double(r))):
             return l <= r
         case let (.number(.int(l)), .number(.int(r))):
             return l <= r
-        case let (.array(l), .array(r)):
-            return l == r
-        case let (.object(l), .object(r)):
-            return l == r
-        case (.null, .null):
-            return true
-        case let (.bool(l), .bool(r)):
-            return l == r
+        case let (.array(l), .array(r)): return l == r
+        case let (.object(l), .object(r)): return l == r
+        case (.null, .null): return true
+        case let (.bool(l), .bool(r)): return l == r
         default:
             return false
         }
@@ -173,22 +169,14 @@ extension TinyJSON: Comparable {
 
     public static func == (lhs: TinyJSON, rhs: TinyJSON) -> Bool {
         switch (lhs, rhs) {
-        case let (.array(l), .array(r)):
-            return l == r
-        case let (.object(l), .object(r)):
-            return l == r
-        case (.null, .null):
-            return true
-        case let (.bool(l), .bool(r)):
-            return l == r
-        case let (.string(l), .string(r)):
-            return l == r
-        case let (.number(.double(l)), .number(.double(r))):
-            return l == r
-        case let (.number(.int(l)), .number(.int(r))):
-            return l == r
-        default:
-            return false
+        case let (.array(l), .array(r)): return l == r
+        case let (.object(l), .object(r)): return l == r
+        case (.null, .null): return true
+        case let (.bool(l), .bool(r)): return l == r
+        case let (.string(l), .string(r)): return l == r
+        case let (.number(.double(l)), .number(.double(r))): return l == r
+        case let (.number(.int(l)), .number(.int(r))): return l == r
+        default: return false
         }
     }
 }
@@ -225,20 +213,13 @@ extension TinyJSON: Sequence {
 extension TinyJSON: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
         switch self {
-        case .array:
-            return rawString()
-        case .object:
-            return rawString()
-        case let .bool(bool):
-            return bool.description
-        case let .string(string):
-            return string.description
-        case let .number(.double(double)):
-            return double.description
-        case let .number(.int(int)):
-            return int.description
-        case .null:
-            return ""
+        case .array     : return rawString()
+        case .object    : return rawString()
+        case let .bool(bool)        : return bool.description
+        case let .string(string)    : return string.description
+        case let .number(.double(double)): return double.description
+        case let .number(.int(int)): return int.description
+        case .null                  : return ""
         }
     }
 
@@ -247,8 +228,7 @@ extension TinyJSON: CustomStringConvertible, CustomDebugStringConvertible {
     }
 }
 
-// MARK: - Subscript
-
+// MARK: - subscript
 public enum TinyJSONKey {
     case index(Int)
     case key(String)
@@ -367,7 +347,7 @@ extension TinyJSON {
         set {
             switch path.count {
             case 0: return
-            case 1: self[sub:path[0]] = newValue
+            case 1: self[sub: path[0]] = newValue
             default:
                 var aPath = path
                 aPath.remove(at: 0)
@@ -402,13 +382,11 @@ extension TinyJSON {
 // MARK: - Array
 extension TinyJSON {
     public var array: [TinyJSON]? {
-        get {
-            if case let .array(array) = self {
-                return array
-            }
-            // assertionFailure(TinyJSONError.wrongType.rawValue)
-            return nil
+        if case let .array(array) = self {
+            return array
         }
+        // assertionFailure(TinyJSONError.wrongType.rawValue)
+        return nil
     }
 
     public var arrayValue: [TinyJSON] {
@@ -426,7 +404,7 @@ extension TinyJSON {
         }
 
         set {
-            self = TinyJSON(newValue ?? NSNull())
+            self = JSON(newValue ?? NSNull())
         }
     }
 }
@@ -434,13 +412,11 @@ extension TinyJSON {
 // MARK: - Dictionary
 extension TinyJSON {
     public var dictionary: [String: TinyJSON]? {
-        get {
-            if case let .object(object) = self {
-                return object
-            }
-            // assertionFailure(TinyJSONError.wrongType.rawValue)
-            return nil
+        if case let .object(object) = self {
+            return object
         }
+        // assertionFailure(TinyJSONError.wrongType.rawValue)
+        return nil
     }
 
     public var dictionaryValue: [String: TinyJSON] {
@@ -575,67 +551,47 @@ extension TinyJSON {
     }
 
     public var int: Int? {
-        get {
-            if let value = int64 {
-                return Int(truncatingIfNeeded: value)
-            }
-
-            return nil
+        if let value = int64 {
+            return Int(truncatingIfNeeded: value)
         }
+
+        return nil
     }
 
     public var intValue: Int {
-        get {
-            Int(truncatingIfNeeded: int64Value)
-        }
+        Int(truncatingIfNeeded: int64Value)
     }
 
     public var int8Value: Int8 {
-        get {
-            Int8(truncatingIfNeeded: int64Value)
-        }
+        Int8(truncatingIfNeeded: int64Value)
     }
 
     public var int16Value: Int16 {
-        get {
-            Int16(truncatingIfNeeded: int64Value)
-        }
+        Int16(truncatingIfNeeded: int64Value)
     }
 
     public var int32Value: Int32 {
-        get {
-            Int32(truncatingIfNeeded: int64Value)
-        }
+        Int32(truncatingIfNeeded: int64Value)
     }
 
     public var uIntValue: UInt {
-        get {
-            UInt(truncatingIfNeeded: int64Value)
-        }
+        UInt(truncatingIfNeeded: int64Value)
     }
 
     public var uInt8Value: UInt8 {
-        get {
-            UInt8(truncatingIfNeeded: int64Value)
-        }
+        UInt8(truncatingIfNeeded: int64Value)
     }
 
     public var uInt16Value: UInt16 {
-        get {
-            UInt16(truncatingIfNeeded: int64Value)
-        }
+        UInt16(truncatingIfNeeded: int64Value)
     }
 
     public var uInt32Value: UInt32 {
-        get {
-            UInt32(truncatingIfNeeded: int64Value)
-        }
+        UInt32(truncatingIfNeeded: int64Value)
     }
 
     public var uInt64Value: UInt64 {
-        get {
-            UInt64(truncatingIfNeeded: int64Value)
-        }
+        UInt64(truncatingIfNeeded: int64Value)
     }
 }
 
@@ -679,9 +635,7 @@ extension TinyJSON {
     }
 
     public var floatValue: Float {
-        get {
-            Float(doubleValue)
-        }
+        Float(doubleValue)
     }
 }
 
@@ -851,23 +805,20 @@ public enum TinyJSONError: String, Swift.Error {
     case invalidJSON = "JSON is invalid."
 }
 
-/// from SwiftJSON
-fileprivate extension String {
+extension String {
     var url: URL? {
-        get {
-            // Check for existing percent escapes first to prevent double-escaping of % character
-            if self.range(of: "%[0-9A-Fa-f]{2}", options: .regularExpression, range: nil, locale: nil) != nil {
-                return Foundation.URL(string: self)
-            } else if let encodedString_ = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-                return Foundation.URL(string: encodedString_)
-            } else {
-                return nil
-            }
+        // Check for existing percent escapes first to prevent double-escaping of % character
+        if self.range(of: "%[0-9A-Fa-f]{2}", options: .regularExpression, range: nil, locale: nil) != nil {
+            return Foundation.URL(string: self)
+        } else if let encodedString_ = self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            return Foundation.URL(string: encodedString_)
+        } else {
+            return nil
         }
     }
 }
 
-//MARK: - Compatible with SwiftJSON
+// 兼容
 
 extension TinyJSON {
 
@@ -881,7 +832,7 @@ extension TinyJSON {
         return try JSONSerialization.data(withJSONObject: object, options: opt)
     }
 
-    /// 33.3 -> 33.299999999999997
+    // 33.3 -> 33.299999999999997
     public func rawString(_ encoding: String.Encoding = .utf8, options opt: JSONSerialization.WritingOptions = .prettyPrinted) -> String {
 
         switch self {
@@ -948,5 +899,3 @@ extension TinyJSON {
     }
 
 }
-
-
